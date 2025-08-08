@@ -1,0 +1,12 @@
+.navcontainer ul{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: 50px;
+    list-style: none;
+}
+.navcontainer ul li{
+    font-size: 20px;
+    margin-top: 50px;
+    color: white;
+}

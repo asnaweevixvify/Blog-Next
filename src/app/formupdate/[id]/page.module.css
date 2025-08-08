@@ -1,0 +1,26 @@
+.formcontainer form{
+    display: flex;
+    flex-direction: column;
+    width: 400px;
+    margin-left: auto;
+    margin-right: auto;
+    margin-top: 40px;
+    gap: 15px;
+}
+.formcontainer input{
+    height: 40px;
+}
+.formcontainer textarea{
+    height: 80px;
+}
+.formcontainer button{
+    height: 50px;
+    font-family: 'kanit';
+    font-size: 15px;
+    background-color:blueviolet;
+    border: 0;
+    cursor: pointer;
+}
+.formcontainer button:hover{
+    border: 1px solid white;
+}
