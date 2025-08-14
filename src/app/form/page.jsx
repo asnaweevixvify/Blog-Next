@@ -31,7 +31,12 @@ export default function Form() {
               router.push("/")
         }
         catch(err) {
-            console.log(err);
+            if(err.response.status === 401){
+                Swal.fire({
+                    icon: "error",
+                    title: "กรุณาเข้าสู่ระบบ",
+                  });
+            }
         }
     }
 

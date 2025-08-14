@@ -7,11 +7,14 @@ import { FaRegTrashAlt,FaPencilAlt } from "react-icons/fa";
 import Swal from "sweetalert2";
 import confirmAlert from "./confirmAlert";
 import Link from "next/link";
+import { useSession } from "next-auth/react";
 
 export default function Home() {
   const [data,setData] = useState([])
   const [isLoading,setIsLoading] = useState(true)
   const [isDelete,setIsDelete] = useState("none")
+  const { data:session } = useSession()
+  const [isLogin,setIsLogin] = useState(false)
 
   const getData = async()=>{
     try {
@@ -66,6 +69,15 @@ export default function Home() {
     }
   },[isDelete])
 
+  useEffect(()=>{
+    if(!session?.username){
+      setIsLogin(false)
+    }
+    else{
+      setIsLogin(true)
+    }
+  },[session?.username])
+
   if(!isLoading){
     return (
       <div className="home-container">
@@ -78,13 +90,13 @@ export default function Home() {
                 <h5>{e.content}</h5>
                 <div className={styles.des}>
                   <h6>ผู้เขียน {e.author}</h6>
-                  <div className={styles.icons}>
+                  {isLogin && <div className={styles.icons}>
                     <FaRegTrashAlt 
                       style={{cursor:"pointer"}} 
                       onClick={()=>confirmDelete(e.id)}
                     />
                     <Link href={`/formupdate/${e.id}`}><FaPencilAlt/></Link>
-                  </div>
+                  </div>}
                 </div>
               </div>
             )
